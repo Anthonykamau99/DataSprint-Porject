@@ -2,7 +2,7 @@ Project Overview
 
 This project was built for DataSprint 2026, a one-week data science hackathon organised by the Strathmore Data Community (SDC) in partnership with iLab Africa at Strathmore University, Nairobi.
 
-The challenge was to analyse data from the 2024 FinAccess Household Survey — the most comprehensive survey of financial inclusion in Kenya, published in December 2024 by the Central Bank of Kenya, KNBS, and FSD Kenya — and build a machine learning model that predicts whether a Kenyan adult's financial situation has Improved, Stayed the same, or Worsened compared to the previous year.
+The challenge was to analyse data from the 2024 FinAccess Household Survey, the most comprehensive survey of financial inclusion in Kenya, published in December 2024 by the Central Bank of Kenya, KNBS, and FSD Kenya — and build a machine learning model that predicts whether a Kenyan adult's financial situation has Improved, Stayed the same, or Worsened compared to the previous year.
 
 Beyond just building a model, the project answers the guiding question:
 
@@ -67,14 +67,13 @@ f1_score, classification_report, confusion_matrix — evaluation
 
 Methodology
 
-This project followed the CRISP-DM (Cross-Industry Standard Process for Data Mining) framework — the industry standard used by 43% of data science practitioners.
+This project followed the CRISP-DM (Cross-Industry Standard Process for Data Mining) framework, the industry standard used by 43% of data science practitioners.
 
 Business Understanding → Data Understanding → Data Preparation → Modelling → Evaluation
 
-Step 1 — Business Understanding
+Step 1 - Business Understanding
 
 Read the problem statement carefully before touching any data. Understood that:
-
 
 This is a multiclass classification problem (not binary, not regression)
 The primary metric is Weighted F1-Score — NOT accuracy
@@ -82,8 +81,7 @@ Class imbalance is a critical challenge (Worsened = 52.6% majority)
 The output must be explainable to non-technical policymakers
 
 
-Step 2 — Data Understanding (EDA)
-
+Step 2 - Data Understanding (EDA)
 
 Loaded and inspected all 28 columns
 Identified data types, missing values, and outliers
@@ -91,7 +89,7 @@ Visualised distributions and relationships before any modelling
 Produced 5+ labelled charts to tell the data story
 
 
-Step 3 — Data Preparation
+Step 3 - Data Preparation
 
 
 Stripped whitespace from financial_status
@@ -101,19 +99,19 @@ Applied LabelEncoder to all remaining categorical columns (county, Sex)
 Split data: 80% training / 20% test with stratify=y to preserve class proportions
 
 
-Step 4 — Modelling
+Step 4 - Modelling
 
 Built a two-model strategy:
 
-Model 1 — Decision Tree (Baseline)
+Model 1 - Decision Tree (Baseline)
 
 
-Purpose: Explainability — every prediction can be traced step by step
+Purpose: Explainability - every prediction can be traced step by step
 max_depth=8 prevents overfitting
 class_weight='balanced' compensates for the Worsened majority
 
 
-Model 2 — Random Forest (Primary)
+Model 2 - Random Forest (Primary)
 
 
 Purpose: Best performance
@@ -122,7 +120,7 @@ max_depth=12, class_weight='balanced'
 Built-in feature importance scores
 
 
-Step 5 — Evaluation
+Step 5 - Evaluation
 
 
 Evaluated on the held-out test set (4,175 respondents)
@@ -135,15 +133,15 @@ Exploratory Data Analysis
 
 Five key charts were produced during EDA:
 
-Chart 1 — Target Distribution
+Chart 1 - Target Distribution
 
 Over half of respondents (52.6% = 10,981 people) reported their finances worsened. Only 20.5% improved. This class imbalance was central to every modelling decision.
 
-Chart 2 — Financial Shock vs Outcome (Most Important Finding)
+Chart 2 - Financial Shock vs Outcome (Most Important Finding)
 
-Adults who experienced a financial shock showed dramatically higher rates of worsened outcomes (59.6% Worsened) compared to those who did not (47.3% Worsened). Shocks — droughts, illness, job loss — are a key entry point into financial decline.
+Adults who experienced a financial shock showed dramatically higher rates of worsened outcomes (59.6% Worsened) compared to those who did not (47.3% Worsened). Shocks - droughts, illness, job loss  are a key entry point into financial decline.
 
-Chart 3 — Monthly Income Distribution
+Chart 3 - Monthly Income Distribution
 
 The income distributions for the three classes are clearly separated:
 
@@ -153,11 +151,11 @@ Worsened respondents are concentrated at very low incomes (under KES 5,000)
 Median income for Improved is approximately 2× higher than Worsened
 
 
-Chart 4 — Education Level vs Financial Status
+Chart 4 - Education Level vs Financial Status
 
 Higher education levels are associated with better financial outcomes. University-educated adults show notably higher rates of improvement — education provides financial resilience and access to better-paying jobs.
 
-Chart 5 — Financial Health Indicators
+Chart 5 - Financial Health Indicators
 
 Three indicators were examined: food security (nfhi_11), managing non-food spending (nfhi_12), and being debt-stress free (nfhi_13). In all three cases, respondents who answered "Yes" showed substantially lower rates of financial deterioration.
 
@@ -169,7 +167,7 @@ Why These Models?
 Decision Tree was chosen as the baseline because:
 
 
-Fully interpretable — every prediction can be explained
+Fully interpretable - every prediction can be explained
 Works well with mixed data types
 Fast to train
 Judges can follow the logic
@@ -191,7 +189,7 @@ With 52.6% of data labelled "Worsened", a model that predicts "Worsened" every s
 Handling Class Imbalance
 
 
-Used class_weight='balanced' in both models — automatically adjusts weights so minority classes (Improved = 20.5%) are not ignored
+Used class_weight='balanced' in both models - automatically adjusts weights so minority classes (Improved = 20.5%) are not ignored
 Used stratify=y in train/test split to ensure all three classes are proportionally represented in both sets
 
 
@@ -202,16 +200,16 @@ Model Comparison
 
 ModelWeighted F1-ScoreDecision Tree (baseline)0.479Random Forest (primary)0.542Improvement+0.063
 
-Random Forest — Full Classification Report
+Random Forest - Full Classification Report
 
 ClassPrecisionRecallF1-ScoreSupportImproved0.400.460.43856Stayed the same0.430.300.361,122Worsened0.650.720.682,197Weighted Average0.540.550.544,175
 
 Confusion Matrix Insights (Random Forest)
 
 
-Worsened is predicted best — 71.6% correctly identified (most policy-critical class)
+Worsened is predicted best - 71.6% correctly identified (most policy-critical class)
 Stayed the same is the hardest to predict — often confused with both other classes
-Improved recall of 46% — the model catches nearly half of all people whose situation improved
+Improved recall of 46% - the model catches nearly half of all people whose situation improved
 
 
 Test Set Size
@@ -234,7 +232,7 @@ Summary of Key Insights
 Monthly income (11.8% importance) is the single strongest predictor of financial status. Low-income earners are disproportionately represented in the "Worsened" class and rarely transition to "Improved" without structural support.
 
 2. Geography determines opportunity
-County (11.4%) is the second strongest predictor. Where a Kenyan adult lives has an enormous impact on their financial trajectory — reflecting differences in economic activity, infrastructure, market access, and public services between counties.
+County (11.4%) is the second strongest predictor. Where a Kenyan adult lives has an enormous impact on their financial trajectory - reflecting differences in economic activity, infrastructure, market access, and public services between counties.
 
 3. Large households are under pressure
 Household size (7.6%) shows that more dependents per earner directly increases financial stress. This is especially critical in low-income households where a single earner supports many.
@@ -322,7 +320,7 @@ Click Runtime → Run all
 All cells will execute in order — total runtime approximately 3–5 minutes
 
 
-Option 2 — VS Code
+Option 2 - VS Code
 
 
 Install extensions: Python (Microsoft) + Jupyter (Microsoft)
