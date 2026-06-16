@@ -2,7 +2,7 @@ Project Overview
 
 This project was built for DataSprint 2026, a one-week data science hackathon organised by the Strathmore Data Community (SDC) in partnership with iLab Africa at Strathmore University, Nairobi.
 
-The challenge was to analyse data from the 2024 FinAccess Household Survey, the most comprehensive survey of financial inclusion in Kenya, published in December 2024 by the Central Bank of Kenya, KNBS, and FSD Kenya — and build a machine learning model that predicts whether a Kenyan adult's financial situation has Improved, Stayed the same, or Worsened compared to the previous year.
+The challenge was to analyse data from the 2024 FinAccess Household Survey, the most comprehensive survey of financial inclusion in Kenya, published in December 2024 by the Central Bank of Kenya, KNBS, and FSD Kenya - and build a machine learning model that predicts whether a Kenyan adult's financial situation has Improved, Stayed the same, or Worsened compared to the previous year.
 
 Beyond just building a model, the project answers the guiding question:
 
